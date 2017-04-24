@@ -1,0 +1,25 @@
+$generic-colors: (
+  'primary': #8e3329,
+  'accent': #d98328,
+  'secondary': #5a1321,
+  'foreground': #191919,
+  'background': #e9e9e9,
+  'rollover': #f90,
+);
+
+$opacities: (
+  'light': 0.8,
+  'medium': 0.6,
+  'dark': 0.4
+);
+
+@function color($map: $generic-colors, $key: 'primary') {
+  @return map-get($map, $key);
+}
+
+@function color-alpha($color: color('primary'), $opacity: 0, $map: $opacities, $key: 'light') {
+  @if map-has-key($map, $key) {
+    $opacity: map-get($map, $key);
+  }
+  @return rgba($color, $opacity);
+}

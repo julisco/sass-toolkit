@@ -1,0 +1,16 @@
+@mixin rollover($color: $default-color, $hover-color: $rollover-color) {
+  @if ($default-color == null) {
+    $color: color('primary');
+  }
+
+  @if ($hover-color == null) {
+    $hover-color: color('rollover');
+  }
+
+  color: $color;
+
+  &:hover,
+  &:focus {
+    color: $hover-color;
+  }
+}

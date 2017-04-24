@@ -1,0 +1,32 @@
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+@function calculate-rem($size) {
+  $remSize: strip-unit($size) / strip-unit($font-size-default);
+  @return #{$remSize}rem;
+}
+
+@function line-height($font-size, $line-height) {
+  @return strip-unit($line-height) / strip-unit($font-size);
+}
+
+@mixin font-size($sizeValue, $fallback: false) {
+  @if ($fallback) {
+    font-size: $sizeValue + px;
+  }
+  font-size: calculate-rem($sizeValue);
+}
+
+@mixin line-height($font-size, $line-height) {
+  line-height: line-height($font-size, $line-height);
+}
+
+@mixin fonts($font-size, $line-height, $fallback: false) {
+  @include font-size(strip-unit($font-size), $fallback);
+  @include line-height(strip-unit($font-size), strip-unit($line-height));
+}
+

@@ -1,0 +1,20 @@
+@mixin multi-line-ellipsis($lines: 2, $font-size: 14, $line-height: 1, $background-color: white) {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  height: #{$font-size * $line-height * $lines}px;
+  max-height: #{$font-size * $line-height * $lines}px;
+
+  &::after {
+    content: '';
+    text-align: right;
+    bottom: 0;
+    right: 0;
+    width: 25%;
+    display: block;
+    position: absolute;
+    height: calc(1em * 1.2);
+    background: linear-gradient(to right, rgba($background-color, 0), rgba($background-color, 1) 75%);
+  }
+}

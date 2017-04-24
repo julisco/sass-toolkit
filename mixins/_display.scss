@@ -1,0 +1,13 @@
+@mixin display($display: none) {
+  display: $display;
+
+  @if($display == none) {
+    &--active {
+      display: block;
+    }
+  } @else if($display == block) {
+    &--hidden {
+      display: none;
+    }
+  }
+}
